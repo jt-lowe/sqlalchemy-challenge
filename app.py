@@ -154,7 +154,7 @@ def start_end(start,end):
                                     ,func.avg(Measurement.tobs)\
                                     ,func.max(Measurement.tobs)).\
                                     filter(Measurement.date > start).\
-                                    filter(Measurement.date < end).\
+                                    filter(Measurement.date <= end).\
                                     order_by(Measurement.date).all()
     
     session.close()
