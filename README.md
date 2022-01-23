@@ -41,8 +41,8 @@ Queried the database to pull each station name from the "Station" class. The lis
 #### /api/v1.0/tobs
 Similar to the precipitation activity, however it queries the date and corresponding tobs value from 'measurement' class, and adds the filter of the most active station. Which is found using the same code we used in Step 1.
 
-#### /api/v1.0/<start>
+#### /api/v1.0/&ltstart>
 We query the 'measurement' class and perform the func.min,func.avg and func.max functions on the 'tobs' values, and filter by the given start date, providing all values from the start to the end of the dataset. Similar to previous routes, the data is unpacked into a list using a for loop, then JSONified
 
-#### /api/v1.0/<start>/<end>
+#### /api/v1.0/&ltstart>/&ltend>
 Same as last route, with added filter for the input end date, for which the data is pulled from between the start and end date given.
