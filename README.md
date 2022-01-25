@@ -46,3 +46,25 @@ We query the 'measurement' class and perform the func.min,func.avg and func.max 
 
 #### /api/v1.0/&ltstart>/&ltend>
 Same as last route, with added filter for the input end date, for which the data is pulled from between the start and end date given.
+
+## Bonus 1
+### Temperature Analysis I
+After the csv is read, we used the pd.to_datetime() function to convert the strings in 'date' into datetime format. We then used the set_index() function to make the dates the index column for the dataframe and finally dropped the original 'date' column using .drop(columns='date').
+
+To filter the data into the specific months we were identifying we queried the index where the month was equal to the number of the months in question (i.e. June==6 and December==12) then stored these filtered dataframes, then used the .mean() function to find the averages of the tobs of each dataframe.
+
+We ran an independent t-test (as the temperatures in two months are independent of one another), which produced the pvalue=4.193529835915755e-187, this p-value being so small suggests statistical significance between the two dataframes.
+
+## Bonus 2
+### Temperature Analysis II
+After reflecting the data from the sqlite file, we selected the dates that represent the trip dates and selected a year in the dataset (in this case 2016-08-01 - 2016-08-07). We use the built calc_temps() function and unpack the tuples into three different variables, then print.
+
+The information is plotted using 1 as the x value, the found average as the height and the yerror value as the max - min temperature found by the calc values, and some styling is applied to the visualisation.
+
+### Rainfall Analysis
+For this analysis, we need to join the Station and Measurement classes, the column that both classes contain is 'station' so we ensure there is a filter. function that includes Station.station==Measurement.station. Select all the columns that are asked for in the activity (precipitation amount, station, name, latitude, longitude, and elevation) then we apply our other filters to ensure the data presented is between our selected trip dates, and the desc() function to have it in descending order.
+
+### Daily Temperature Normals
+Using the given daily_normals() function, we use our selected date range and, similarly to Temp Analysis 2, we unpack the tuples. As this is in a for loop (to capture information for the days) we create 3 lists to hold the min, average and max values respectively, and append their values from the daily_normals() function. These three lists are combined into a dictionary, which we convert to a DataFrame.
+
+We then create an area plot with the dataframe and apply some styling to the visualisation
